@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Letra
@@ -18,6 +19,7 @@ class Letra
      * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("letra")
      */
     private $id;
 
@@ -25,6 +27,7 @@ class Letra
      * @var string
      *
      * @ORM\Column(name="ruta", type="string", length=255, nullable=false)
+     * @Groups("letra")
      */
     private $ruta;
 

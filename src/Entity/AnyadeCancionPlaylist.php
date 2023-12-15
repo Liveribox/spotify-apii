@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * AnyadeCancionPlaylist
@@ -16,6 +17,7 @@ class AnyadeCancionPlaylist
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_anyadida", type="datetime", nullable=false)
+     * @Groups("cancionPlaylist")
      */
     private $fechaAnyadida;
 

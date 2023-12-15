@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Album
@@ -18,6 +19,7 @@ class Album
      * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("album")
      */
     private $id;
 
@@ -25,6 +27,7 @@ class Album
      * @var string
      *
      * @ORM\Column(name="titulo", type="string", length=100, nullable=false)
+     * @Groups("album")
      */
     private $titulo;
 
@@ -32,6 +35,7 @@ class Album
      * @var string
      *
      * @ORM\Column(name="imagen", type="string", length=255, nullable=false)
+     * @Groups("album")
      */
     private $imagen;
 
@@ -39,6 +43,7 @@ class Album
      * @var bool
      *
      * @ORM\Column(name="patrocinado", type="boolean", nullable=false)
+     * @Groups("album")
      */
     private $patrocinado;
 
@@ -46,6 +51,7 @@ class Album
      * @var \DateTime|null
      *
      * @ORM\Column(name="fecha_inicio_patrocinio", type="date", nullable=true)
+     * @Groups("album")
      */
     private $fechaInicioPatrocinio;
 
@@ -53,6 +59,7 @@ class Album
      * @var \DateTime|null
      *
      * @ORM\Column(name="fecha_fin_patrocinio", type="date", nullable=true)
+     * @Groups("album")
      */
     private $fechaFinPatrocinio;
 
@@ -60,6 +67,7 @@ class Album
      * @var \DateTime|null
      *
      * @ORM\Column(name="anyo", type="datetime", nullable=true)
+     * @Groups("album")
      */
     private $anyo;
 
@@ -77,6 +85,7 @@ class Album
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="album")
+     * @Groups("album")
      */
     private $usuario = array();
 
