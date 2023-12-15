@@ -2,15 +2,96 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-
-
 #Rutas David
 
 
+#PODCASTS
+podcasts:
+  path: /podcasts
+  controller: App\Controller\PodcastController::podcasts
+  methods: GET
 
 
+podcastById:
+  path: /podcast/{id}
+  controller: App\Controller\PodcastController::podcastById
+  methods: GET
 
 
+podcastsbyUser:
+  path: /usuario/{id}/podcasts
+  controller: App\Controller\PodcastController::podcastsByUser
+  methods: GET
+
+
+podcastsSeguimientos:
+  path: /usuario/{id}/podcast/{id}
+  controller: App\Controller\PodcastController::podcastsSeguimientos
+  methods: POST|DELETE
+
+
+#CAPÍTULOS
+capitulosByPodcast:
+  path: /podcast/{id}/capitulos
+  controller: App\Controller\CapituloController::capitulosByPodcast
+  methods: GET
+
+
+capitulosById:
+  path: /podcast/{id}/capitulo/{id}
+  controller: App\Controller\CapituloController::capitulosByPodcast
+  methods: GET
+
+
+#CANCIONES
+canciones:
+  path: /canciones
+  controller: App\Controller\CancionController::canciones
+  methods: GET
+
+
+cancionesById:
+  path: /canciones/{id}
+  controller: App\Controller\CancionController::cancionesById
+  methods: GET
+
+
+cancionesByPlaylist:
+  path: /playlist/{id}/canciones
+  controller: App\Controller\CancionController::cancionesByPlaylist
+  methods: GET
+
+
+modiCancionesById:
+  path: /playlist/{id}/cancion/{id}
+  controller: App\Controller\CancionController::modiCancionesById
+  methods: POST|DELETE
+
+
+#ARTISTAS
+artistas:
+  path: /artistas
+  controller: App\Controller\ArtistaController::artistas
+  methods: GET
+
+
+artistasAlbums:
+  path: /artista/{id}/albums
+  controller: App\Controller\ArtistaController::artistasAlbums
+  methods: GET
+
+  
+artistasAlbumsByIds:
+  path: /artista/{id}/album/{id}
+  controller: App\Controller\ArtistaController::artistasAlbumsByIds
+  methods: GET
+
+
+#TIPOS DE DESCARGA
+tiposDescargas:
+  path: /tipos-descargas
+  controller: App\Controller\TipoDescargaController::tiposDescargas
+  methods: GET
 
 
 
@@ -21,3 +102,103 @@
 
 #Rutas Álvaro
 
+
+#USUARIOS
+usuarios:
+  path: /usuarios
+  controller: App\Controller\UsuarioController::usuarios
+  methods: GET|POST
+
+
+usuarioById:
+  path: /usuario/{id}
+  controller: App\Controller\UsuarioController::usuarioById
+  methods: GET|PUT|DELETE
+
+
+usuarioSeguidos:
+  path: /usuario/{id}/seguidos
+  controller: App\Controller\UsuarioController::usuarioSeguidos
+  methods: GET
+
+
+usuarioSigueUsuario:
+  path: /usuario/{usuario_id}/sigue/{usuario_seguido_id}
+  controller: App\Controller\UsuarioController::usuarioSigueUsuario
+  methods: POST|DELETE
+
+
+configuracionByUsuario:
+  path: /usuarios/{usuario_id}/configuracion
+  controller: App\Controller\ConfiguracionController::configuracionByUsuario
+  methods: GET|PUT
+
+
+#SUSCRIPCIONES
+suscripciones:
+  path: /usuario/{id}/suscripciones
+  controller: App\Controller\SuscripcionController::suscripciones
+  methods: GET
+
+
+suscripcionesById:
+  path: /usuario/{id}/suscripcion/{id}
+  controller: App\Controller\SuscripcionController::suscripcionesById
+  methods: GET
+
+
+#PLAYLISTS
+playlists:
+  path: /playlists
+  controller: App\Controller\PlaylistController::playlists
+  methods: GET|POST
+
+
+playlistsById:
+  path: /playlist/{id}
+  controller: App\Controller\PlaylistController::playlistsById
+  methods: GET
+
+
+playlistsByUsuario:
+  path: /usuario/{id}/playlists
+  controller: App\Controller\UsuarioController::playlistsByUsuario
+  methods: GET
+
+
+playlistsByUsuarioId:
+  path: /usuario/{id}/playlist/{id}
+  controller: App\Controller\UsuarioController::playlistsByUsuarioId
+  methods: GET|PUT|DELETE
+
+
+#ALBUMS
+albums:
+  path: /albums
+  controller: App\Controller\AlbumController::albums
+  methods: GET
+
+
+albumById:
+  path: /albumById
+  controller: App\Controller\AlbumController::albumsById
+  methods: GET
+
+
+albumsAndCanciones:
+  path: /album/{id}/canciones
+  controller: App\Controller\AlbumController::albumsAndCanciones
+  methods: GET
+
+
+#CALIDAD
+calidades:
+  path: /calidades
+  controller: App\Controller\CalidadController::calidades
+  methods: GET
+
+
+#IDIOMA
+idiomas:
+  path: /idiomas
+  controller: App\Controller\IdiomaController::idiomas
