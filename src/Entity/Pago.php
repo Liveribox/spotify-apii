@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Pago
@@ -18,6 +19,7 @@ class Pago
      * @ORM\Column(name="numero_orden", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("pago")
      */
     private $numeroOrden;
 
@@ -25,6 +27,7 @@ class Pago
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="date", nullable=false)
+     * @Groups("pago")
      */
     private $fecha;
 
@@ -32,6 +35,7 @@ class Pago
      * @var float
      *
      * @ORM\Column(name="total", type="float", precision=10, scale=0, nullable=false)
+     * @Groups("pago")
      */
     private $total;
 

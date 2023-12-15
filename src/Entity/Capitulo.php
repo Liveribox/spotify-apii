@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Capitulo
@@ -18,6 +19,7 @@ class Capitulo
      * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("capitulo")
      */
     private $id;
 
@@ -25,6 +27,7 @@ class Capitulo
      * @var string
      *
      * @ORM\Column(name="titulo", type="string", length=100, nullable=false)
+     * @Groups("capitulo")
      */
     private $titulo;
 
@@ -32,6 +35,7 @@ class Capitulo
      * @var string|null
      *
      * @ORM\Column(name="descripcion", type="text", length=65535, nullable=true)
+     * @Groups("capitulo")
      */
     private $descripcion;
 
@@ -39,6 +43,7 @@ class Capitulo
      * @var int
      *
      * @ORM\Column(name="duracion", type="integer", nullable=false, options={"unsigned"=true})
+     * @Groups("capitulo")
      */
     private $duracion;
 
@@ -53,6 +58,7 @@ class Capitulo
      * @var int
      *
      * @ORM\Column(name="numero_reproducciones", type="integer", nullable=false, options={"unsigned"=true})
+     * @Groups("capitulo")
      */
     private $numeroReproducciones;
 

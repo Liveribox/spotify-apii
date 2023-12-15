@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Configuracion
@@ -16,6 +17,7 @@ class Configuracion
      * @var bool
      *
      * @ORM\Column(name="autoplay", type="boolean", nullable=false)
+     * @Groups("configuracion")
      */
     private $autoplay;
 
@@ -23,6 +25,7 @@ class Configuracion
      * @var bool
      *
      * @ORM\Column(name="ajuste", type="boolean", nullable=false)
+     * @Groups("configuracion")
      */
     private $ajuste;
 
@@ -30,6 +33,7 @@ class Configuracion
      * @var bool
      *
      * @ORM\Column(name="normalizacion", type="boolean", nullable=false)
+     * @Groups("configuracion")
      */
     private $normalizacion;
 

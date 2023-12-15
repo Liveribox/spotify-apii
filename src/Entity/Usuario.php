@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Usuario
@@ -18,6 +19,7 @@ class Usuario
      * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("usuario")
      */
     private $id;
 
@@ -25,6 +27,7 @@ class Usuario
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=45, nullable=false)
+     * @Groups("usuario")
      */
     private $username;
 
@@ -32,6 +35,7 @@ class Usuario
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=150, nullable=false)
+     * @Groups("usuario")
      */
     private $password;
 
@@ -39,6 +43,7 @@ class Usuario
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=150, nullable=false)
+     * @Groups("usuario")
      */
     private $email;
 
@@ -46,6 +51,7 @@ class Usuario
      * @var string|null
      *
      * @ORM\Column(name="genero", type="string", length=1, nullable=true)
+     * @Groups("usuario")
      */
     private $genero;
 
@@ -53,6 +59,7 @@ class Usuario
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_nacimiento", type="date", nullable=false)
+     * @Groups("usuario")
      */
     private $fechaNacimiento;
 
@@ -60,6 +67,7 @@ class Usuario
      * @var string|null
      *
      * @ORM\Column(name="pais", type="string", length=45, nullable=true)
+     * @Groups("usuario")
      */
     private $pais;
 
@@ -67,6 +75,7 @@ class Usuario
      * @var string|null
      *
      * @ORM\Column(name="codigo_postal", type="string", length=20, nullable=true)
+     * @Groups("usuario")
      */
     private $codigoPostal;
 
