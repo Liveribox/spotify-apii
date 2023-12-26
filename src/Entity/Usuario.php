@@ -166,4 +166,5 @@ class Usuario
         $this->playlist = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    
 }
