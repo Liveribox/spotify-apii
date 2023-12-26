@@ -402,4 +402,5 @@ class Usuario
 
         return $this;
     }
+
 }
