@@ -25,7 +25,7 @@ podcastsbyUser:
 
 
 podcastsSeguimientos:
-  path: /usuario/{id}/podcast/{id}
+  path: /usuario/{userId}/podcast/{podcastId}
   controller: App\Controller\PodcastController::podcastsSeguimientos
   methods: POST|DELETE
 
@@ -38,7 +38,7 @@ capitulosByPodcast:
 
 
 capitulosById:
-  path: /podcast/{id}/capitulo/{id}
+  path: /podcast/{podcastId}/capitulo/{capituloId}
   controller: App\Controller\CapituloController::capitulosByPodcast
   methods: GET
 
@@ -63,7 +63,7 @@ cancionesByPlaylist:
 
 
 modiCancionesById:
-  path: /playlist/{id}/cancion/{id}
+  path: /playlist/{playlistId}/cancion/{cancionId}
   controller: App\Controller\CancionController::modiCancionesById
   methods: POST|DELETE
 
@@ -82,7 +82,7 @@ artistasAlbums:
 
   
 artistasAlbumsByIds:
-  path: /artista/{id}/album/{id}
+  path: /artista/{artistaId}/album/{albumId}
   controller: App\Controller\ArtistaController::artistasAlbumsByIds
   methods: GET
 
@@ -142,7 +142,7 @@ suscripciones:
 
 
 suscripcionesById:
-  path: /usuario/{id}/suscripcion/{id}
+  path: /usuario/{usuarioId}/suscripcion/{suscripcionId}
   controller: App\Controller\SuscripcionController::suscripcionesById
   methods: GET
 
@@ -167,7 +167,7 @@ playlistsByUsuario:
 
 
 playlistsByUsuarioId:
-  path: /usuario/{id}/playlist/{id}
+  path: /usuario/{usuarioId}/playlist/{playlistId}
   controller: App\Controller\UsuarioController::playlistsByUsuarioId
   methods: GET|PUT|DELETE
 
