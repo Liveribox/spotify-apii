@@ -9,7 +9,7 @@
 podcasts:
   path: /podcasts
   controller: App\Controller\PodcastController::podcasts
-  methods: GET
+  methods: GET|POST
 
 
 podcastById:
