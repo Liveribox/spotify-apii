@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Usuario;
+use App\Entity\Playlist;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -115,6 +116,24 @@ class UsuarioController extends AbstractController
         
     }
 
-    
-    
+    public function playlistsByUsuario(SerializerInterface $serializer, Request $request){
+        $usuarioId = $request->get("id");
+
+        if ($request->isMethod("GET")){
+
+            $playlists = $this->getDoctrine()
+            ->getRepository(Playlist::class)
+            ->findBy(["usuario" => $usuarioId]);
+
+            $playlists = $serializer->serialize(
+                $playlists,
+                'json',
+                ['groups' => ['playlist']]
+            );
+
+            return new Response($playlists);
+
+        }
+    }
+     
 }

@@ -13,5 +13,22 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ConfiguracionController extends AbstractController
 {
-    
+    public function configuracionByUsuario(SerializerInterface $serializer, Request $request){
+        $usuarioId = $request->get("usuario_id");
+
+        if ($request->isMethod("GET")){
+
+            $configuraciones = $this->getDoctrine()
+            ->getRepository(Configuracion::class)
+            ->findBy(["usuario" => $usuarioId]);
+
+            $configuraciones = $serializer->serialize(
+                $configuraciones,
+                'json',
+                ["groups" => ["configuracion"]] 
+            );
+
+            return new Response($configuraciones);
+        }
+    }
 }

@@ -28,6 +28,7 @@ class Usuario
      *
      * @ORM\Column(name="username", type="string", length=45, nullable=false)
      * @Groups("usuario")
+     * @Groups("playlist")
      */
     private $username;
 
