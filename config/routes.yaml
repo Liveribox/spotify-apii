@@ -89,7 +89,7 @@ artistasAlbumsByIds:
 
 #TIPOS DE DESCARGA
 tiposDescargas:
-  path: /tipos-descargas
+  path: /tiposdescargas
   controller: App\Controller\TipoDescargaController::tiposDescargas
   methods: GET
 
