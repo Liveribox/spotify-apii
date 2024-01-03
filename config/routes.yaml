@@ -180,7 +180,7 @@ albums:
 
 
 albumById:
-  path: /albumById
+  path: /album/{id}
   controller: App\Controller\AlbumController::albumsById
   methods: GET
 
@@ -202,3 +202,4 @@ calidades:
 idiomas:
   path: /idiomas
   controller: App\Controller\IdiomaController::idiomas
+  methods: GET
