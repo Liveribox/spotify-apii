@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cancion;
+use App\Entity\Playlist;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +54,35 @@ class CancionController extends AbstractController
             return new Response($canciones);
         }
 
+        return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
+    }
+
+    public function cancionesByPlaylist(SerializerInterface $serializer, Request $request){
+
+        $idPlaylist=$request->get("id");
+
+        
+        $playlist=$this->getDoctrine()
+            ->getRepository(Playlist::class)
+            ->findOneBy(["id"=>$idPlaylist]);
+
+        $canciones=$this->getDoctrine()
+            ->getRepository(Cancion::class)
+            ->findBy(["id"=>$playlist]);
+    
+    
+        if ($request->isMethod("GET")){
+    
+    
+            $canciones = $serializer->serialize(
+                $canciones,
+                'json',
+                ['groups' => ['cancion']]
+            );
+    
+            return new Response($canciones);
+        }
+    
         return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
     }
 

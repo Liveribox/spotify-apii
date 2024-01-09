@@ -24,10 +24,10 @@ podcastsbyUser:
   methods: GET
 
 
-podcastsSeguimientos:
-  path: /usuario/{userId}/podcast/{podcastId}
-  controller: App\Controller\PodcastController::podcastsSeguimientos
-  methods: POST|DELETE
+#podcastsSeguimientos:
+  #path: /usuario/{userId}/podcast/{podcastId}
+  #controller: App\Controller\PodcastController::podcastsSeguimientos
+  #methods: POST|DELETE
 
 
 #CAPÍTULOS
@@ -39,7 +39,7 @@ capitulosByPodcast:
 
 capitulosById:
   path: /podcast/{podcastId}/capitulo/{capituloId}
-  controller: App\Controller\CapituloController::capitulosByPodcast
+  controller: App\Controller\CapituloController::capitulosById
   methods: GET
 
 
