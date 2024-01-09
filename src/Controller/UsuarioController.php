@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\AnyadeCancionPlaylist;
 use App\Entity\Usuario;
 use App\Entity\Playlist;
+use App\Entity\Free;
+use App\Entity\Configuracion;
+use App\Entity\Favoritas;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,11 +61,23 @@ class UsuarioController extends AbstractController
     }
 
     public function usuarioById(SerializerInterface $serializer, Request $request){
+        
         $usuarioId = $request->get("id");
-        $usuario = null;
-
+        
         $usuario=$this->getDoctrine()->getRepository(Usuario::class)
-        ->findOneBy(["id" => $usuarioId]);
+            ->findOneBy(["id" => $usuarioId]);
+
+        $freeUsuario = $this->getDoctrine()->getRepository(Free::class)
+            ->findBy(["usuario" => $usuario]);
+
+        $configUsuario = $this->getDoctrine()->getRepository(Configuracion::class)
+            ->findBy(["usuario" => $usuario]);
+
+        $anyadeCancionPlaylistUsuario = $this->getDoctrine()->getRepository(AnyadeCancionPlaylist::class)
+            ->findBy(["usuario" => $usuario]);
+
+        $playlistUsuario = $this->getDoctrine()->getRepository(Playlist::class)
+            ->findBy(["usuario" => $usuario]);
         
         if ($request->isMethod("GET")){
             
@@ -103,10 +119,33 @@ class UsuarioController extends AbstractController
         }
 
         if($request->isMethod("DELETE")){
+            //dump($usuario, $freeUsuario);die;
             $deletedUsuario=clone $usuario;
+
+            foreach($freeUsuario as $free){
+                $this->getDoctrine()->getManager()->remove($free);
+                $this->getDoctrine()->getManager()->flush();    
+            }
+
+            foreach($configUsuario as $config){
+                $this->getDoctrine()->getManager()->remove($config);
+                $this->getDoctrine()->getManager()->flush(); 
+            }
+
+            foreach($anyadeCancionPlaylistUsuario as $anyadir){
+                $this->getDoctrine()->getManager()->remove($anyadir);
+                $this->getDoctrine()->getManager()->flush(); 
+            }
+
+            foreach($playlistUsuario as $playlist){
+                $this->getDoctrine()->getManager()->remove($playlist);
+                $this->getDoctrine()->getManager()->flush();
+            }
+
+           
             $this->getDoctrine()->getManager()->remove($usuario);
             $this->getDoctrine()->getManager()->flush();
-
+            
             $deletedUsuario=$serializer->serialize($deletedUsuario,
             'json',
             ["groups" => ["usuario"]]);
