@@ -100,62 +100,62 @@ tiposDescargas: #Donette
 
 #USUARIOS
 usuarios:
-  path: /usuarios
+  path: /usuarios #Hecho
   controller: App\Controller\UsuarioController::usuarios
   methods: GET|POST
 
 
-usuarioById:
+usuarioById: #Hecho
   path: /usuario/{id}
   controller: App\Controller\UsuarioController::usuarioById
   methods: GET|PUT|DELETE
 
 
-usuarioSeguidos:
+usuarioSeguidos: #Hecho
   path: /usuario/{id}/seguidos
   controller: App\Controller\UsuarioController::usuarioSeguidos
   methods: GET
 
 
-usuarioSigueUsuario:
-  path: /usuario/{usuario_id}/sigue/{usuario_seguido_id}
-  controller: App\Controller\UsuarioController::usuarioSigueUsuario
-  methods: POST|DELETE
+#usuarioSigueUsuario: 
+#  path: /usuario/{usuario_id}/sigue/{usuario_seguido_id}
+#  controller: App\Controller\UsuarioController::usuarioSigueUsuario
+#  methods: POST|DELETE
 
 
-configuracionByUsuario:
+configuracionByUsuario: #Hecho
   path: /usuarios/{usuario_id}/configuracion
   controller: App\Controller\ConfiguracionController::configuracionByUsuario
   methods: GET|PUT
 
 
 #SUSCRIPCIONES
-suscripciones:
+suscripciones: #Hecho
   path: /usuario/{id}/suscripciones
   controller: App\Controller\SuscripcionController::suscripciones
   methods: GET
 
 
-suscripcionesById:
+suscripcionesById: #Hecho
   path: /usuario/{usuarioId}/suscripcion/{suscripcionId}
   controller: App\Controller\SuscripcionController::suscripcionesById
   methods: GET
 
 
 #PLAYLISTS
-playlists:
+playlists: #Hecho
   path: /playlists
   controller: App\Controller\PlaylistController::playlists
   methods: GET|POST
 
 
-playlistsById:
+playlistsById: #Hecho
   path: /playlist/{id}
   controller: App\Controller\PlaylistController::playlistsById
   methods: GET
 
 
-playlistsByUsuario:
+playlistsByUsuario: #Hecho
   path: /usuario/{id}/playlists
   controller: App\Controller\UsuarioController::playlistsByUsuario
   methods: GET
@@ -168,33 +168,33 @@ playlistsByUsuarioId:
 
 
 #ALBUMS
-albums:
+albums: #Hecho
   path: /albums
   controller: App\Controller\AlbumController::albums
   methods: GET
 
 
-albumById:
+albumById: #Hecho
   path: /album/{id}
   controller: App\Controller\AlbumController::albumsById
   methods: GET
 
 
-albumsAndCanciones:
+albumsAndCanciones: #Hecho
   path: /album/{id}/canciones
   controller: App\Controller\AlbumController::albumsAndCanciones
   methods: GET
 
 
 #CALIDAD
-calidades:
+calidades: #Hecho
   path: /calidades
   controller: App\Controller\CalidadController::calidades
   methods: GET
 
 
 #IDIOMA
-idiomas:
+idiomas: #Hecho
   path: /idiomas
   controller: App\Controller\IdiomaController::idiomas
   methods: GET
