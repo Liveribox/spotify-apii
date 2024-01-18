@@ -69,7 +69,6 @@ class Cancion
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="cancion")
-     * @Groups("cancion")
      */
     private $usuario = array();
 
