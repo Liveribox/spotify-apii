@@ -43,30 +43,29 @@ class CapituloController extends AbstractController{
 
     public function capitulosById(SerializerInterface $serializer, Request $request){
 
-        $idPodcast=$request->get("podcastId");
-        $idCapitulo=$request->get("capituloId");
-        
-        $podcast=$this->getDoctrine()
-            ->getRepository(Podcast::class)
-            ->findOneBy(["id"=>$idPodcast]);
+        $idPodcast = $request->get("podcastId");
+        $idCapitulo = $request->get("capituloId");
 
-        $capitulos=$this->getDoctrine()
-            ->getRepository(Capitulo::class)
-            ->findOneBy(["id"=>$idCapitulo]);
-    
-    
-        if ($request->isMethod("GET")){
-    
-    
-            $capitulos = $serializer->serialize(
-                $capitulos,
+        $podcastRepository = $this->getDoctrine()->getRepository(Podcast::class);
+        $capituloRepository = $this->getDoctrine()->getRepository(Capitulo::class);
+
+        $podcast = $podcastRepository->find($idPodcast);
+        $capitulo = $capituloRepository->find($idCapitulo);
+
+        if (!$podcast || !$capitulo || $capitulo->getPodcast() !== $podcast) {
+            return new JsonResponse(['error' => 'Parámetro no encontrado']);
+        }
+
+        if ($request->isMethod("GET")) {
+            $data = $serializer->serialize(
+                $capitulo,
                 'json',
                 ['groups' => ['capitulo']]
             );
-    
-            return new Response($capitulos);
+
+            return new Response($data);
         }
-    
+
         return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
     }
 }

@@ -86,8 +86,6 @@ class PodcastController extends AbstractController
         ->getRepository(Usuario::class)
         ->findOneBy(["id"=>$idUser]);
 
-        
-
 
         if ($request->isMethod("GET")){
 
@@ -95,7 +93,7 @@ class PodcastController extends AbstractController
             $podcasts = $serializer->serialize(
                 $usuario,
                 'json',
-                ['groups' => ['podcast']]
+                ['groups' => ['usuario']]
             );
     
             return new Response($podcasts);

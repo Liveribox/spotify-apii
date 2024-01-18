@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AnyadeCancionPlaylist;
 use App\Entity\Cancion;
 use App\Entity\Playlist;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -66,10 +67,14 @@ class CancionController extends AbstractController
             ->getRepository(Playlist::class)
             ->findOneBy(["id"=>$idPlaylist]);
 
-        $canciones=$this->getDoctrine()
-            ->getRepository(Cancion::class)
-            ->findBy(["id"=>$playlist]);
-    
+        $cancionesPlaylist=$this->getDoctrine()
+            ->getRepository(AnyadeCancionPlaylist::class)
+            ->findOneBy(["playlist"=>$playlist]);
+
+        $canciones = [];
+        foreach($cancionesPlaylist as $cancionPlaylist) {
+            $canciones[] = $cancionPlaylist->getCancion();
+        }
     
         if ($request->isMethod("GET")){
     
@@ -84,6 +89,30 @@ class CancionController extends AbstractController
         }
     
         return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
+    }
+
+    public function modiCancionesById(SerializerInterface $serializer, Request $request){
+
+        if ($request->isMethod("POST")) {
+            $bodyData = $request->getContent();
+            $canciones = $serializer->deserialize(
+                $bodyData, Cancion::class,
+                'json'
+            );
+
+            $this->getDoctrine()->getManager()->persist($canciones);
+            $this->getDoctrine()->getManager()->flush();
+
+            $canciones = $serializer->serialize(
+                $canciones,
+                "json",
+                ["groups" => ["affiliation"]]);
+
+            return new Response($canciones);
+        }
+
+        return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
+        
     }
 
 

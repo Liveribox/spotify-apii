@@ -59,7 +59,6 @@ class Podcast
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="podcast")
-     * @Groups("podcast")
      */
     private $usuario = array();
 

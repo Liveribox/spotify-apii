@@ -6,17 +6,15 @@
 
 
 #PODCASTS
-podcasts:
+podcasts: #Donette
   path: /podcasts
   controller: App\Controller\PodcastController::podcasts
   methods: GET|POST
 
-
-podcastById:
+podcastById: #Donette
   path: /podcast/{id}
   controller: App\Controller\PodcastController::podcastById
   methods: GET
-
 
 podcastsbyUser:
   path: /usuario/{id}/podcasts
@@ -31,26 +29,25 @@ podcastsbyUser:
 
 
 #CAPÍTULOS
-capitulosByPodcast:
+capitulosByPodcast: #Donette
   path: /podcast/{id}/capitulos
   controller: App\Controller\CapituloController::capitulosByPodcast
   methods: GET
 
-
-capitulosById:
+capitulosById: #Donette
   path: /podcast/{podcastId}/capitulo/{capituloId}
   controller: App\Controller\CapituloController::capitulosById
   methods: GET
 
 
 #CANCIONES
-canciones:
+canciones: #Donette
   path: /canciones
   controller: App\Controller\CancionController::canciones
   methods: GET
 
 
-cancionesById:
+cancionesById: #Donette
   path: /canciones/{id}
   controller: App\Controller\CancionController::cancionesById
   methods: GET
@@ -69,26 +66,24 @@ modiCancionesById:
 
 
 #ARTISTAS
-artistas:
+artistas: #Donette
   path: /artistas
   controller: App\Controller\ArtistaController::artistas
   methods: GET
 
-
-artistasAlbums:
+artistasAlbums: #Donette
   path: /artista/{id}/albums
   controller: App\Controller\ArtistaController::artistasAlbums
   methods: GET
 
-  
-artistasAlbumsByIds:
+artistasAlbumsByIds: #Donette
   path: /artista/{artistaId}/album/{albumId}
   controller: App\Controller\ArtistaController::artistasAlbumsByIds
   methods: GET
 
 
 #TIPOS DE DESCARGA
-tiposDescargas:
+tiposDescargas: #Donette
   path: /tiposdescargas
   controller: App\Controller\TipoDescargaController::tiposDescargas
   methods: GET
