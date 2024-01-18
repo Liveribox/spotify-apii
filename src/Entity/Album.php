@@ -85,7 +85,7 @@ class Album
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="album")
-     * @Groups("album")
+     * 
      */
     private $usuario = array();
 
