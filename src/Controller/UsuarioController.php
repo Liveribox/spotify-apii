@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\AnyadeCancionPlaylist;
+use App\Entity\Eliminada;
 use App\Entity\Usuario;
 use App\Entity\Playlist;
 use App\Entity\Free;
@@ -308,6 +309,9 @@ class UsuarioController extends AbstractController
         $playlists = $this->getDoctrine()->getRepository(Playlist::class)
         ->findOneBy(["id"=> $playlistId,"usuario"=> $usuarioId]);
 
+        $playlistActiva = $this->getDoctrine()->getRepository(Activa::class)
+        ->findOneBy(["playlist" => $playlists]);
+
 
         if ($request->isMethod("GET")){
             
@@ -331,6 +335,7 @@ class UsuarioController extends AbstractController
                 'json',
                 ['object_to_populate'=>$playlists]
             ); 
+            
 
             $this->getDoctrine()->getManager()->persist($playlists);
             $this->getDoctrine()->getManager()->flush();
@@ -349,9 +354,38 @@ class UsuarioController extends AbstractController
             return new JsonResponse(["msg" => 'Affiliation not found'], 404);
         }
 
-        
+        if($request->isMethod("DELETE")){
+            $deletedPlaylistActiva=clone $playlistActiva;
+
+            $eliminda = new Eliminada();
+
+            $eliminda->setPlaylist($playlists);
+            $eliminda->setFechaEliminacion(new \DateTime());
+
+            $this->getDoctrine()->getManager()->persist($eliminda);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->getDoctrine()->getManager()->remove($playlistActiva);
+            $this->getDoctrine()->getManager()->flush();
+
+
+            $playlists = $serializer->serialize(
+                $playlists,
+                'json',
+                ['groups' => ['playlist']]
+            );
+
+            return new Response($playlists);
+
+
+            
+        }
 
         
     }
+
+   
+
+    
      
 }
