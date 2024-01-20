@@ -79,26 +79,57 @@ class PodcastController extends AbstractController
 
     public function podcastsByUser(SerializerInterface $serializer, Request $request){
 
-        $idUser=$request->get("id");
-        $podcast=null;
+        $idUser = $request->get('id');
 
-        $usuario=$this->getDoctrine()
-        ->getRepository(Usuario::class)
-        ->findOneBy(["id"=>$idUser]);
+        $usuario = $this->getDoctrine()->getRepository(Usuario::class)
+        ->findOneBy(["id"=> $idUser]);
+
+        $podcasts = $usuario->getPodcast();
 
 
         if ($request->isMethod("GET")){
+            
 
-    
             $podcasts = $serializer->serialize(
-                $usuario,
+                $podcasts,
                 'json',
-                ['groups' => ['usuario']]
+                ['groups' => ['podcast']]
             );
-    
+
             return new Response($podcasts);
         }
 
         return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
+    }
+
+    public function podcastsSeguimientos(SerializerInterface $serializer, Request $request){
+
+        $idUser = $request->get('id');
+
+        $usuario = $this->getDoctrine()->getRepository(Usuario::class)
+        ->findOneBy(["id"=> $idUser]);
+
+        $podcasts = $usuario->getPodcast();
+
+        if ($request->isMethod("POST")) {
+            $bodyData = $request->getContent();
+            $podcasts = $serializer->deserialize(
+                $bodyData, Podcast::class,
+                'json'
+            );
+
+            $this->getDoctrine()->getManager()->persist($podcasts);
+            $this->getDoctrine()->getManager()->flush();
+
+            $podcasts = $serializer->serialize(
+                $podcasts,
+                "json",
+                ["groups" => ["affiliation"]]);
+
+            return new Response($podcasts);
+        }
+
+        return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
+        
     }
 }

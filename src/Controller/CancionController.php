@@ -60,34 +60,39 @@ class CancionController extends AbstractController
 
     public function cancionesByPlaylist(SerializerInterface $serializer, Request $request){
 
-        $idPlaylist=$request->get("id");
+        $idPlaylist = $request->get("id");
 
-        
-        $playlist=$this->getDoctrine()
+        $playlist = $this->getDoctrine()
             ->getRepository(Playlist::class)
-            ->findOneBy(["id"=>$idPlaylist]);
+            ->findOneBy(["id" => $idPlaylist]);
 
-        $cancionesPlaylist=$this->getDoctrine()
+        if (!$playlist) {
+            return new JsonResponse(["msg" => "Playlist no encontrada"]);
+        }
+
+        $cancionesPlaylist = $this->getDoctrine()
             ->getRepository(AnyadeCancionPlaylist::class)
-            ->findOneBy(["playlist"=>$playlist]);
+            ->findBy(["playlist" => $playlist]);
+
+        if (!$cancionesPlaylist) {
+            return new JsonResponse(["msg" => "La playlist no contiene canciones"]);
+        }
 
         $canciones = [];
-        foreach($cancionesPlaylist as $cancionPlaylist) {
+        foreach ($cancionesPlaylist as $cancionPlaylist) {
             $canciones[] = $cancionPlaylist->getCancion();
         }
-    
-        if ($request->isMethod("GET")){
-    
-    
+
+        if ($request->isMethod("GET")) {
             $canciones = $serializer->serialize(
                 $canciones,
                 'json',
                 ['groups' => ['cancion']]
             );
-    
+
             return new Response($canciones);
         }
-    
+
         return new JsonResponse(["msg" => $request->getMethod() . " not allowed"]);
     }
 

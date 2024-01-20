@@ -16,16 +16,16 @@ podcastById: #Donette
   controller: App\Controller\PodcastController::podcastById
   methods: GET
 
-podcastsbyUser:
+podcastsbyUser: #Donette
   path: /usuario/{id}/podcasts
   controller: App\Controller\PodcastController::podcastsByUser
   methods: GET
 
 
-#podcastsSeguimientos:
-  #path: /usuario/{userId}/podcast/{podcastId}
-  #controller: App\Controller\PodcastController::podcastsSeguimientos
-  #methods: POST|DELETE
+podcastsSeguimientos:
+  path: /usuario/{userId}/podcast/{podcastId}
+  controller: App\Controller\PodcastController::podcastsSeguimientos
+  methods: POST|DELETE
 
 
 #CAPÍTULOS
@@ -53,7 +53,7 @@ cancionesById: #Donette
   methods: GET
 
 
-cancionesByPlaylist:
+cancionesByPlaylist: #Donette
   path: /playlist/{id}/canciones
   controller: App\Controller\CancionController::cancionesByPlaylist
   methods: GET
