@@ -111,10 +111,10 @@ usuarioById: #Hecho
   methods: GET|PUT|DELETE
 
 
-usuarioSeguidos: #Hecho
-  path: /usuario/{id}/seguidos
-  controller: App\Controller\UsuarioController::usuarioSeguidos
-  methods: GET
+#usuarioSeguidos: 
+#  path: /usuario/{id}/seguidos
+#  controller: App\Controller\UsuarioController::usuarioSeguidos
+#  methods: GET
 
 
 #usuarioSigueUsuario: 
@@ -161,7 +161,7 @@ playlistsByUsuario: #Hecho
   methods: GET
 
 
-playlistsByUsuarioId:
+playlistsByUsuarioId: #Hecho
   path: /usuario/{usuarioId}/playlist/{playlistId}
   controller: App\Controller\UsuarioController::playlistsByUsuarioId
   methods: GET|PUT|DELETE

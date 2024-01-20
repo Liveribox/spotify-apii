@@ -15,9 +15,12 @@ class PlaylistController extends AbstractController
 {
     public function playlists(SerializerInterface $serializer , Request $request){
         if ($request->isMethod("GET")){
-            $uplaylists=$this->getDoctrine()
-            ->getRepository(Playlist::class)
+
+            $activa = $this->getDoctrine()->getRepository(Activa::class)
             ->findAll();
+
+            $uplaylists=$this->getDoctrine()->getRepository(Playlist::class)
+            ->findBy(["id" => $activa]);
     
             $uplaylists = $serializer->serialize(
                 $uplaylists,
@@ -44,7 +47,7 @@ class PlaylistController extends AbstractController
             $playlist->setFechaCreacion(new \DateTime());
 
             $usuario = $this->getDoctrine()->getRepository(Usuario::class)
-            ->findOneBy(["id"=>["40"]]);
+            ->findOneBy(["id"=>["6"]]);
 
             $playlist->setUsuario($usuario);
 
