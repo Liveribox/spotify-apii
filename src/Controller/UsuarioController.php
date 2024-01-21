@@ -300,6 +300,50 @@ class UsuarioController extends AbstractController
             return new Response($playlists);
 
         }
+
+        if ($request->isMethod("POST")){
+            $playlist = new Playlist();
+
+            if(!empty($playlist)){
+                $bodyData = $request->getContent();
+                $playlist = $serializer->deserialize(
+                $bodyData,
+                Playlist::class,
+                'json'
+                
+            );
+            }
+
+            $playlist->setFechaCreacion(new \DateTime());
+
+            $usuario = $this->getDoctrine()->getRepository(Usuario::class)
+            ->findOneBy(["id" => $usuarioId]);
+
+            $playlist->setUsuario($usuario);
+
+            
+            
+            $this->getDoctrine()->getManager()->persist($playlist);
+            $this->getDoctrine()->getManager()->flush();
+
+            $activa = new Activa();
+
+            
+            $activa->setEsCompartida(true);
+            $activa->setPlaylist($playlist);
+            
+
+            $this->getDoctrine()->getManager()->persist($activa);
+            $this->getDoctrine()->getManager()->flush();
+
+            $playlist = $serializer->serialize(
+                $playlist,
+                "json",
+                ["groups" => ["playlist"]]
+            );
+
+            return new Response($playlist);
+        }
     }
 
     public function playlistsByUsuarioId(SerializerInterface $serializer, Request $request){

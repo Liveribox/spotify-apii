@@ -31,50 +31,6 @@ class PlaylistController extends AbstractController
             return new Response($uplaylists);
         }
 
-        if ($request->isMethod("POST")){
-            $playlist = new Playlist();
-
-            if(!empty($playlist)){
-                $bodyData = $request->getContent();
-                $playlist = $serializer->deserialize(
-                $bodyData,
-                Playlist::class,
-                'json'
-                
-            );
-            }
-
-            $playlist->setFechaCreacion(new \DateTime());
-
-            $usuario = $this->getDoctrine()->getRepository(Usuario::class)
-            ->findOneBy(["id"=>["6"]]);
-
-            $playlist->setUsuario($usuario);
-
-            
-            
-            $this->getDoctrine()->getManager()->persist($playlist);
-            $this->getDoctrine()->getManager()->flush();
-
-            $activa = new Activa();
-
-            
-            $activa->setEsCompartida(true);
-            $activa->setPlaylist($playlist);
-            
-
-            $this->getDoctrine()->getManager()->persist($activa);
-            $this->getDoctrine()->getManager()->flush();
-
-            $playlist = $serializer->serialize(
-                $playlist,
-                "json",
-                ["groups" => ["playlist"]]
-            );
-
-            return new Response($playlist);
-        }
-
     }
 
     public function playlistsById(SerializerInterface $serializer , Request $request){
@@ -93,6 +49,7 @@ class PlaylistController extends AbstractController
     
             return new Response($playlist);
         }
+
     }
 
     
