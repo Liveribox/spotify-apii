@@ -146,7 +146,7 @@ suscripcionesById: #Hecho
 playlists: #Hecho
   path: /playlists
   controller: App\Controller\PlaylistController::playlists
-  methods: GET|POST
+  methods: GET
 
 
 playlistsById: #Hecho
@@ -158,7 +158,7 @@ playlistsById: #Hecho
 playlistsByUsuario: #Hecho
   path: /usuario/{id}/playlists
   controller: App\Controller\UsuarioController::playlistsByUsuario
-  methods: GET
+  methods: GET|POST
 
 
 playlistsByUsuarioId: #Hecho
