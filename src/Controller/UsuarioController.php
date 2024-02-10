@@ -428,6 +428,23 @@ class UsuarioController extends AbstractController
         
     }
 
+    public function usuarioByEmail(SerializerInterface $serializer, Request $request){
+        $emailReq = $request->get('email');
+
+        if ($request->isMethod("GET")){
+            $usuarioEmail=$this->getDoctrine()->getRepository(Usuario::class)->findOneBy(["email" => $emailReq]); 
+            
+    
+            $usuariosEmail = $serializer->serialize(
+                $usuarioEmail,
+                'json',
+                ['groups' => ['usuario']]
+            );
+    
+            return new Response($usuariosEmail);
+        }
+    }
+
    
 
     

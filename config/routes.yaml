@@ -110,6 +110,11 @@ usuarioById: #Hecho
   controller: App\Controller\UsuarioController::usuarioById
   methods: GET|PUT|DELETE
 
+usuarioByEmail:
+  path: /usuarioEmail/{email}
+  controller: App\Controller\UsuarioController::usuarioByEmail
+  methods: GET
+
 
 #usuarioSeguidos: 
 #  path: /usuario/{id}/seguidos
