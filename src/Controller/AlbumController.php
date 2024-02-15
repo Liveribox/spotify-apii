@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Album;
 use App\Entity\Cancion;
+use App\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,6 +66,32 @@ class AlbumController extends AbstractController
 
             return new Response($canciones);
         }
+    }
+
+
+    public function albumByUsuario(SerializerInterface $serializer, Request $request){
+        $usuarioId = $request->get("id");
+
+        $usuario = $this->getDoctrine()->getRepository(Usuario::class)
+        ->findOneBy(["id" => $usuarioId]);
+
+        $albums = $usuario->getAlbum();
+
+        if($request->isMethod("GET")){
+
+            $albums = $serializer->serialize(
+                $albums,
+                "json",
+                ["groups" => ["album"]]
+            );
+    
+            return new Response($albums);
+
+        }
+
+        
+        
+
     }
 
 
