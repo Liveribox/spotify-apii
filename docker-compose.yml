@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     image: buig/sf-php8.0-apache
-    container_name: spotifyapi
+    container_name: spotifyapii
     volumes:
       - .:/code
       - ./provisioning/sites-enabled:/etc/apache2/sites-enabled
