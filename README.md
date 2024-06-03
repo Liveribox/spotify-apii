@@ -1,12 +1,8 @@
-===Pasos para configurar el proyecto===
+# SpotifyApi made in php
 
-1. Clonar el repositorio
-'''git clone'''
-2. Configurar el archivo .env
-'''cp .env .env.local'''
-3. Instalar las dependencias
-'''docker compose up -d'''
-'''docker compose web bash'''
-'''composer install'''
-4. Cargar la base de datos
-'''mysql -u root -pdbrootpass -h add-dbms<db/spotify.sql'''
+## Environments I use
+![VisualStudioCode](https://img.shields.io/badge/Visual%20Studio%20Code-%23007ACC?style=for-thebadge&logo=visualstudiocode&link=https%3A%2F%2Fcode.visualstudio.com%2F)
+
+## Programming languages
+![Mysql](https://img.shields.io/badge/Mysql-%234479A1?style=for-the-badge&logo=mysql&logoColor=%23ffffff&link=https%3A%2F%2Fwww.mysql.com%2F)
+![PHP](https://img.shields.io/badge/PHP-red?style=for-the-badge&logo=php&logoColor=%23FFFFFF&labelColor=%23777BB4&color=%23777BB4&link=https%3A%2F%2Fwww.php.net%2Fdocs.php)
