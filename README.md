@@ -1,4 +1,4 @@
-# SpotifyApi made in php
+# Mini Spotify made in php
 
 ## Environments I use
 ![VisualStudioCode](https://img.shields.io/badge/Visual%20Studio%20Code-%23007ACC?style=for-thebadge&logo=visualstudiocode&link=https%3A%2F%2Fcode.visualstudio.com%2F)
